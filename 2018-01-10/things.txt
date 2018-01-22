@@ -1,0 +1,11 @@
+dog
+cat
+bird
+turtle
+kitten
+snake
+penguin
+lion
+pizza
+coke
+ferrari
