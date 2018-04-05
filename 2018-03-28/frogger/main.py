@@ -27,8 +27,18 @@ class Frogger(game.Game):
             froggerlib.Truck(SCREEN_WIDTH/3, y, 2 * FROG_SIZE + 10, FROG_SIZE, SCREEN_WIDTH, y, 4),
             froggerlib.Truck(SCREEN_WIDTH/3*2, y, 2 * FROG_SIZE + 10, FROG_SIZE, SCREEN_WIDTH, y, 4),
         ]
-        self.dozers = []
-        self.racecars = []
+        y = 7 * VG + PADDING
+        self.dozers = [
+            froggerlib.Dozer(0, y, 2 * FROG_SIZE + 10, FROG_SIZE, -1 * (2 * FROG_SIZE + 10), y, 3),
+            froggerlib.Dozer(SCREEN_WIDTH/3, y, 2 * FROG_SIZE + 10, FROG_SIZE, -1 * (2 * FROG_SIZE + 10), y, 3),
+            froggerlib.Dozer(SCREEN_WIDTH/3*2, y, 2 * FROG_SIZE + 10, FROG_SIZE, -1 * (2 * FROG_SIZE + 10), y, 3),
+        ]
+        y = 6 * VG + PADDING
+        self.racecars = [
+            froggerlib.RaceCar(0, y, 2 * FROG_SIZE, FROG_SIZE, -1 * 2 * FROG_SIZE, y, 4, 7),
+            froggerlib.RaceCar(SCREEN_WIDTH/3, y, 2 * FROG_SIZE, FROG_SIZE, -1 * 2 * FROG_SIZE, y, 4, 7),
+            froggerlib.RaceCar(SCREEN_WIDTH/3*2, y, 2 * FROG_SIZE, FROG_SIZE, -1 * 2 * FROG_SIZE, y, 4, 7),
+        ]
         self.allcars = self.cars + self.trucks + self.dozers + self.racecars
 
         self.logs = []
@@ -113,6 +123,14 @@ class Frogger(game.Game):
         color = (0, 0, 255)
         self.draw_object(surface, color, stage)
 
+    def draw_dozer(self, surface, stage):
+        color = (255, 255, 0)
+        self.draw_object(surface, color, stage)
+
+    def draw_racecar(self, surface, stage):
+        color = (0, 255, 0)
+        self.draw_object(surface, color, stage)
+
 
     def draw_object(self, surface, color, obj):
         rect = pygame.Rect(obj.getX(), obj.getY(), obj.getWidth(), obj.getHeight())
@@ -130,6 +148,10 @@ class Frogger(game.Game):
             self.draw_car(surface, c)
         for c in self.trucks:
             self.draw_truck(surface, c)
+        for c in self.dozers:
+            self.draw_dozer(surface, c)
+        for c in self.racecars:
+            self.draw_racecar(surface, c)
 
         self.draw_frog(surface, self.frog)
 
